@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	 <script src="https://kit.fontawesome.com/712575d4a5.js" 
+    crossorigin="anonymous"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,
+	minimun-scale=1.0">
+	<title>Navegacion con tabs</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="font-awesome.css">
+
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+	<script src="main.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<style>
+	
+
+        /* Stackoverflow preview fix, please ignore */
+       
+        .purple-text{
+        color:rgb(39, 70, 54);
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 17px;
+        }
+		.cogollo_text{
+			font-size: 27px;
+		}
+        form{
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .font-family{
+          font-family: lobster;
+        }
+        .smaller-image{
+          width: 179px;
+        }
+        body{
+        background: url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png);
+        }
+		*{
+        box-sizing: border-box;
+		}
+		/* Set additional styling options for the columns */
+		.column {
+		float: left;
+		}
+		/* Set width length for the left, right and middle columns */
+		.left {
+		width: 65%;
+		}
+		.right {
+		width: 35%;
+		}
+		.left1 {
+		width: 33%;
+		}
+		.right1 {
+		width: 33%;
+		}
+		.left2 {
+		width: 33%;
+		}
+		
+		.row:after {
+		content: "";
+		display: table;
+		clear: both;
+		}
+		.btn{
+			position: absolute;
+			background: #0f0f0f;
+			color: white;
+			border-radius: 70%;
+			
+		}
+
+
+		#myImg {
+		border-radius: 5px;
+		cursor: pointer;
+		transition: 0.3s;
+		}
+
+		#myImg:hover {opacity: 0.7;}
+		
+		#myImg2 {
+		border-radius: 5px;
+		cursor: pointer;
+		transition: 0.3s;
+		}
+
+		#myImg2:hover {opacity: 0.7;}
+		
+		#myImg3 {
+		border-radius: 5px;
+		cursor: pointer;
+		transition: 0.3s;
+		}
+
+		#myImg3:hover {opacity: 0.7;}
+		
+		#myImg4 {
+		border-radius: 5px;
+		cursor: pointer;
+		transition: 0.3s;
+		}
+
+		#myImg4:hover {opacity: 0.7;}
+		
+		#myImg5 {
+		border-radius: 5px;
+		cursor: pointer;
+		transition: 0.3s;
+		}
+
+		#myImg5:hover {opacity: 0.7;}
+		
+		#myImg6 {
+		border-radius: 5px;
+		cursor: pointer;
+		transition: 0.3s;
+		}
+
+		#myImg6:hover {opacity: 0.7;}
+		
+
+		/* The Modal (background) */
+		.modal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 100px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+		}
+
+		/* Modal Content (image) */
+		.modal-content {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 700px;
+		}
+
+		/* Caption of Modal Image */
+		#caption {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 700px;
+		text-align: center;
+		color: #ccc;
+		padding: 10px 0;
+		height: 150px;
+		}
+
+		/* Add Animation */
+		.modal-content, #caption {  
+		-webkit-animation-name: zoom;
+		-webkit-animation-duration: 0.6s;
+		animation-name: zoom;
+		animation-duration: 0.6s;
+		}
+
+		@-webkit-keyframes zoom {
+		from {-webkit-transform:scale(0)} 
+		to {-webkit-transform:scale(1)}
+		}
+
+		@keyframes zoom {
+		from {transform:scale(0)} 
+		to {transform:scale(1)}
+		}
+
+		/* The Close Button */
+		.close {
+		position: absolute;
+		top: 15px;
+		right: 35px;
+		color: #f1f1f1;
+		font-size: 40px;
+		font-weight: bold;
+		transition: 0.3s;
+		}
+
+		.close:hover,
+		.close:focus {
+		color: #bbb;
+		text-decoration: none;
+		cursor: pointer;
+		}
+
+		/* 100% Image Width on Smaller Screens */
+		@media only screen and (max-width: 700px){
+		.modal-content {
+			width: 100%;
+		}
+		}
+		
+    </style>
+</head>
+
+
+<body>
+	<div class="wrap">
+
+		<ul class="tabs">
+			<li><a href="#tab1"><span class="fa fa-home"></span><span class="tab-text">Inicio</span></a></li>
+			<li><a href="#tab2"><span class="fa fa-briefcase"></span><span class="tab-text">Cogollos y Estractos</span></a></li>
+			<li><a href="#tab3"><span class="fa fa-check-square"></span><span class="tab-text">Aceites CDB</span></a></li>
+			<li><a href="#tab4"><span class="fa fa-product-hunt"></span><span class="tab-text">Productos</span></a></li>
+			<li><a href="#tab5"><span class="fa fa-bookmark"></span><span class="tab-text">Contacto</span></a></li>
+			<li><a href="#tab6"><span class="fa fa-group"></span><span class="tab-text">Nosotros</span></a></li>
+			
+			
+		</ul>
+
+		<div class="secciones">
+			<article id="tab1">
+				<div class="row">
+					<div class="column left" style="background:url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png)">
+						<br>
+						<h2>VENTA DE PRODUCTOS EN BASE A CANNABIS</h2>
+						<p>16 de Noviembre del 2022</p>
+						<div class="ratio ratio-16x9">
+							<img src="https://lugh-cbd.com/wp-content/uploads/2021/03/comprar-marihuana-online-702x526.jpg" alt="cryp">
+						</div>
+						<section class="text-justify">
+                  
+							<p>
+							  "Comprar cannabis a través de Internet es absolutamente legal, por lo que esa no debe ser una de tus preocupaciones.
+							  Puede que sigas teniendo cierta inquietud respecto a dónde comprarlo para que sea totalmente seguro y de la mejor 
+							  calidad. Hemos preparado esta guía para poder despejar tus dudas y que estés preparado para poder comprar marihuana
+							  online de manera legal y segura"[1].
+							</p>
+							<p>
+							  "¿Dónde comprar marihuana online?
+							  puede que si te estás iniciando en este mundo pienses que el proceso de compra de marihuana online va a ser muy complejo,
+							  que necesitas mucho conocimiento previo, que quizás incluso necesites entrar en la dark web…
+							  Pero nada de eso es cierto. La experiencia de compra es mucho más sencilla y agradable de lo que pudieses pensar a priori. 
+							  La marihuana legal, al no estar considerada una sustancia psicotrópica, no está prohibida su venta, por lo que podrás comprarla 
+							  simplemente navegando por la web, como harías con cualquier otro producto. Actualmente, la venta de marihuana legal está en 
+							  auge, así cómo las tiendas que la comercializan. Esto hace que la experiencia de compra sea todavía más sencilla, ya que no te 
+							  costará mucho tiempo encontrar una tienda que venda cannabis legal online. Ya que encontrarás varios portales especializados 
+							  en la venta de marihuana online , te recomendamos que no te precipites y contrastes bien antes de elegir en qué portal comprar"[1].
+							</p>
+						  </section>
+						  <section class= "text-center" id="video_in">
+							<div class="ratio ratio-16x9">
+								<iframe src="https://www.youtube.com/embed/SJFn3LGPm6I" title="YouTube video" allowfullscreen></iframe>
+							</div>
+						  </section>
+					</div>
+					<div class="column right" style="background:url(https://st1.uvnimg.com/dims4/default/36032a0/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fbtg%2Ftech.batanga.com%2Ffiles%2FFondos-para-paginas-web-08.jpg)">
+						<section class= "text-center">
+							<br>
+							<h2>PRODUCTOS</h2>
+							
+							<p class= "text-center">
+								<a href = "https://www.clarin.com/buena-vida/salud/aceite-de-cannabis-beneficios-y-contraindicaciones_0_xU20Z492.html">Aceites CBD</a>
+							</p>
+							<p class= "text-center">
+								<a href = "https://www.clarin.com/buena-vida/salud/aceite-de-cannabis-beneficios-y-contraindicaciones_0_xU20Z492.html">Cogollos de cañamo</a>
+							</p>
+							<p class= "text-center">
+								<a href = "https://www.clarin.com/buena-vida/salud/aceite-de-cannabis-beneficios-y-contraindicaciones_0_xU20Z492.html">Cosméticos CDBD</a>
+							</p>
+							<p class= "text-center">
+								<a href="https://www.clarin.com/buena-vida/salud/aceite-de-cannabis-beneficios-y-contraindicaciones_0_xU20Z492.htm">Estractos</a>
+							</p>
+						
+
+						<div class="ratio ratio-16x9">
+							<img src="https://i.pinimg.com/550x/3d/f4/0b/3df40bec7045edeeb3691cce6cc96625.jpg" alt="cryp">
+						</div>
+						<br>
+						<a href="https://www.facebook.com/dr.crip.4.20/"><span class="fa fa-facebook-square"></span><span class="tab-text">Facebook</span></a>
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						<a href="https://www.facebook.com/dr.crip.4.20/"><span class="fa fa-instagram"></span><span class="tab-text">Instagram</span></a>
+
+					</section>
+					</div>
+				</div>
+			</article>
+			<article id="tab2">
+				<h4>Conoceno lo que hacemos!</h4>
+					<section class="text-center cogollo_text" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+					
+					<img src="https://github.com/Jefferson-Moreno/DrCryp/blob/main/images/marihuana-legal.jpg?raw=true" alt="cryp" width=100% height=230px>
+					
+						Las Flores de CBD, fruto del cannabis; considerado el elemento mas cotizado del cañamo ancestral.
+
+					</section>
+					<section class= "text-center" id="video_in">
+						<div class="ratio ratio-21x9">
+							<iframe src="https://www.youtube.com/embed/HwK2BY6VLgE" title="YouTube video" allowfullscreen></iframe>
+						</div>
+					</section>
+					  <br>
+			
+
+				<div class="row" style="background: url(https://www.stockvault.net/data/2012/06/06/131457/preview16.jpg);">
+						<div class="column left1"">
+							
+							<br>
+							<div class="ratio ratio-16x9 gfg">
+								<img id="myImg" src="https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg" alt="aceite">
+								<!-- The Modal -->
+								<div id="myModal" class="modal">
+									<span class="close">&times;</span>
+									<img class="modal-content" id="img02">
+									<div id="caption"></div>
+								</div>
+								
+								<script>
+								// Get the modal
+								var modal = document.getElementById("myModal");
+								
+								// Get the image and insert it inside the modal - use its "alt" text as a caption
+								var img = document.getElementById("myImg");
+								var modalImg = document.getElementById("img02");
+								var captionText = document.getElementById("caption");
+								img.onclick = function(){
+									modal.style.display = "block";
+									modalImg.src = this.src;
+									captionText.innerHTML = this.alt;
+								}
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() { 
+									modal.style.display = "none";
+								}
+								</script>
+							</div>
+						
+							<div class= "text-center">
+								<a class= purple-text href="https://api.whatsapp.com/send?phone=593984754567&text=Hola,%20Qué%20tal%20,me interesa el producto:%20https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg">ADQUIRIR PRODUCTO</a>
+							</div>
+
+								
+								
+
+							<br><br>
+							<div  class="ratio ratio-16x9 gfg">
+								<img id="myImg2" src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.33.33%20(1).jpeg?raw=true" alt="cryp" >
+								
+								
+								<script>
+								// Get the modal
+								var modal = document.getElementById("myModal");
+								
+								// Get the image and insert it inside the modal - use its "alt" text as a caption
+								var img2 = document.getElementById("myImg2");
+								var modalImg2 = document.getElementById("img02");
+								var captionText2 = document.getElementById("caption");
+								img2.onclick = function(){
+									modal.style.display = "block";
+									modalImg2.src = this.src;
+									captionText2.innerHTML = this.alt;
+								}
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() { 
+									modal.style.display = "none";
+								}
+								</script>
+							</div>
+							
+
+							<div class= "text-center">
+								<a class= purple-text href="https://api.whatsapp.com/send?phone=593984754567&text=Hola,%20Qué%20tal%20,me interesa el producto:%20https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg">ADQUIRIR PRODUCTO</a>
+							</div>
+							  
+		
+							
+						</div>
+					<div class="column left2">
+						<br>
+						<div class="ratio ratio-16x9 gfg">
+							<img id="myImg3" src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.33.33%20(1).jpeg?raw=true" alt="cryp">
+							
+							
+							<script>
+							// Get the modal
+							var modal = document.getElementById("myModal");
+							
+							// Get the image and insert it inside the modal - use its "alt" text as a caption
+							var img3 = document.getElementById("myImg3");
+							var modalImg3 = document.getElementById("img02");
+							var captionText3 = document.getElementById("caption");
+							img3.onclick = function(){
+								modal.style.display = "block";
+								modalImg3.src = this.src;
+								captionText3.innerHTML = this.alt;
+							}
+							
+							// Get the <span> element that closes the modal
+							var span = document.getElementsByClassName("close")[0];
+							
+							// When the user clicks on <span> (x), close the modal
+							span.onclick = function() { 
+								modal.style.display = "none";
+							}
+							</script>
+						</div>
+						<div class= "text-center">
+							<a class= purple-text href="https://api.whatsapp.com/send?phone=593984754567&text=Hola,%20Qué%20tal%20,me interesa el producto:%20https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg">ADQUIRIR PRODUCTO</a>
+						</div>
+						<br><br>
+						<div class="ratio ratio-16x9 gfg">
+							<img id="myImg4" src="https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg" alt="cryp" >
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal");
+								
+								// Get the image and insert it inside the modal - use its "alt" text as a caption
+								var img2 = document.getElementById("myImg4");
+								var modalImg2 = document.getElementById("img02");
+								var captionText2 = document.getElementById("caption");
+								img2.onclick = function(){
+									modal.style.display = "block";
+									modalImg2.src = this.src;
+									captionText2.innerHTML = this.alt;
+								}
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() { 
+									modal.style.display = "none";
+								}
+								</script>
+						</div>
+						<div class= "text-center">
+							<a class= purple-text href="https://api.whatsapp.com/send?phone=593984754567&text=Hola,%20Qué%20tal%20,me interesa el producto:%20https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg">ADQUIRIR PRODUCTO</a>
+						</div>
+					</div>
+					<div class="column right1">
+						<br>
+						<div class="ratio ratio-16x9 gfg">
+							<img id="myImg5" src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.28.48.jpeg?raw=true" alt="cryp">
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal");
+								
+								// Get the image and insert it inside the modal - use its "alt" text as a caption
+								var img2 = document.getElementById("myImg5");
+								var modalImg2 = document.getElementById("img02");
+								var captionText2 = document.getElementById("caption");
+								img2.onclick = function(){
+									modal.style.display = "block";
+									modalImg2.src = this.src;
+									captionText2.innerHTML = this.alt;
+								}
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() { 
+									modal.style.display = "none";
+								}
+								</script>
+						</div>
+						<div class= "text-center">
+							<a class= purple-text href="https://api.whatsapp.com/send?phone=593984754567&text=Hola,%20Qué%20tal%20,me interesa el producto:%20https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg">ADQUIRIR PRODUCTO</a>
+						</div>
+						<br><br>
+						<div class="ratio ratio-16x9 gfg">
+							<img id="myImg6" src="https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg" alt="cryp" >
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal");
+								
+								// Get the image and insert it inside the modal - use its "alt" text as a caption
+								var img2 = document.getElementById("myImg6");
+								var modalImg2 = document.getElementById("img02");
+								var captionText2 = document.getElementById("caption");
+								img2.onclick = function(){
+									modal.style.display = "block";
+									modalImg2.src = this.src;
+									captionText2.innerHTML = this.alt;
+								}
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() { 
+									modal.style.display = "none";
+								}
+								</script>
+						</div>
+						<div class= "text-center">
+							<a class= purple-text href="https://api.whatsapp.com/send?phone=593984754567&text=Hola,%20Qué%20tal%20,me interesa el producto:%20https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg">ADQUIRIR PRODUCTO</a>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+			</article>
+			<article id="tab3">
+				<div class="row">
+					<div class="column left1" style="background:url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png)">
+						<br>
+						<h4>Conoceno lo que hacemos!</h4>
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.34.51.jpeg?raw=true" alt="cryp">
+						</div>
+						
+						  <section class= "text-center" id="video_in">
+							<div class="ratio ratio-16x9">
+								<iframe src="https://www.youtube.com/embed/HwK2BY6VLgE" title="YouTube video" allowfullscreen></iframe>
+							</div>
+						  </section>
+					</div>
+					<div class="column left2" style="background:url(https://st1.uvnimg.com/dims4/default/36032a0/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fbtg%2Ftech.batanga.com%2Ffiles%2FFondos-para-paginas-web-08.jpg)">
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.33.33%20(1).jpeg?raw=true" alt="cryp">
+						</div>
+					</div>
+					<div class="column right1" style="background:url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png)">
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.28.48.jpeg?raw=true" alt="cryp">
+						</div>
+					</div>
+					<div class="column right2" style="background:url(https://st1.uvnimg.com/dims4/default/36032a0/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fbtg%2Ftech.batanga.com%2Ffiles%2FFondos-para-paginas-web-08.jpg)">
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.33.33.jpeg?raw=true" alt="cryp">
+						</div>
+					</div>
+				</div>
+			</article>
+			<article id="tab4">
+				<div class="row">
+					<div class="column left1" style="background:url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png)">
+						<br>
+						<h4>Conoceno lo que hacemos!</h4>
+						<div class="ratio ratio-16x9">
+							<img src="https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg" alt="cryp">
+						</div>
+						
+						  <section class= "text-center" id="video_in">
+							<div class="ratio ratio-16x9">
+								<iframe src="https://www.youtube.com/embed/HwK2BY6VLgE" title="YouTube video" allowfullscreen></iframe>
+							</div>
+						  </section>
+					</div>
+					<div class="column left2" style="background:url(https://st1.uvnimg.com/dims4/default/36032a0/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fbtg%2Ftech.batanga.com%2Ffiles%2FFondos-para-paginas-web-08.jpg)">
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.33.33%20(1).jpeg?raw=true" alt="cryp">
+						</div>
+					</div>
+					<div class="column right1" style="background:url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png)">
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.28.48.jpeg?raw=true" alt="cryp">
+						</div>
+					</div>
+					<div class="column right2" style="background:url(https://st1.uvnimg.com/dims4/default/36032a0/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fbtg%2Ftech.batanga.com%2Ffiles%2FFondos-para-paginas-web-08.jpg)">
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.33.33.jpeg?raw=true" alt="cryp">
+						</div>
+					</div>
+				</div>
+			</article>
+			<article id="tab5">
+				<div class="row">
+					<div class="column left1" style="background:url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png)">
+						<br>
+						<h4>Conoceno lo que hacemos!</h4>
+						<div class="ratio ratio-16x9">
+							<img src="https://www.dinafem.org/uploads/aceite1_blog_cdn.jpg" alt="cryp">
+						</div>
+						
+						  <section class= "text-center" id="video_in">
+							<div class="ratio ratio-16x9">
+								<iframe src="https://www.youtube.com/embed/HwK2BY6VLgE" title="YouTube video" allowfullscreen></iframe>
+							</div>
+						  </section>
+					</div>
+					<div class="column left2" style="background:url(https://st1.uvnimg.com/dims4/default/36032a0/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fbtg%2Ftech.batanga.com%2Ffiles%2FFondos-para-paginas-web-08.jpg)">
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.33.33%20(1).jpeg?raw=true" alt="cryp">
+						</div>
+					</div>
+					<div class="column right1" style="background:url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png)">
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.28.48.jpeg?raw=true" alt="cryp">
+						</div>
+					</div>
+					<div class="column right2" style="background:url(https://st1.uvnimg.com/dims4/default/36032a0/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fbtg%2Ftech.batanga.com%2Ffiles%2FFondos-para-paginas-web-08.jpg)">
+						<div class="ratio ratio-16x9">
+							<img src="https://github.com/Jefferson-Moreno/windows/blob/main/images/WhatsApp%20Image%202022-11-12%20at%2021.33.33.jpeg?raw=true" alt="cryp">
+						</div>
+					</div>
+				</div>
+			</article>
+			<footer class="mt-5">
+				<div class="container">
+					<ul>
+						<li><a href="#">Privacy</a></li>
+						<li><a href="#">Terms</a></li>
+						<li><a href="#">Contact</a></li>
+					  </ul>
+					  <span>Copyright 2022, Original Crypisidio</span>
+					  
+				</div>
+			</footer>
+		</div>
+
+	</div>
+<script async src="https://js.sitesearch360.com/plugin/bundle/9388.js"></script>
+</body>
