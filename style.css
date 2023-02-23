@@ -118,8 +118,10 @@ footer .container{
 	width: 50%;
 	height: 40%;
   }
+#fondo_p{
+	background: rgba(255, 255, 255, 0.9);
 
-
+}
 
 
 
